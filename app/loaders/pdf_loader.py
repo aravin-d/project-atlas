@@ -1,5 +1,3 @@
-from pathlib import Path
-
 from pypdf import PdfReader
 
 from app.models import Page
@@ -7,17 +5,14 @@ from app.models import Page
 
 def extract_pages(pdf_path: str) -> list[Page]:
     """
-    Reads a PDF and returns a list of Page objects.
+    Reads a PDF and converts each page into a Page object.
     """
 
     reader = PdfReader(pdf_path)
 
-    source = Path(pdf_path).name
-
-    pages = []
+    pages: list[Page] = []
 
     for page_number, page in enumerate(reader.pages, start=1):
-
         text = page.extract_text()
 
         if not text:
@@ -27,7 +22,6 @@ def extract_pages(pdf_path: str) -> list[Page]:
             Page(
                 page_number=page_number,
                 text=text,
-                source=source
             )
         )
 
