@@ -1,0 +1,10 @@
+chunk_size: 1000
+chunk_overlap: 200
+
+embedding_model: nomic-embed-text
+chat_model: qwen3:8b
+
+top_k: 3
+
+sqlite_path: data/sqlite/documents.db
+vector_db_path: data/chroma
